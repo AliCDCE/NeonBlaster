@@ -17,8 +17,9 @@ public class laser : MonoBehaviour
         rb.velocity = transform.up * speed ;
     }
 
-    void Update()
+    public float getDamage()
     {
+        return damage;
     }
 
 }

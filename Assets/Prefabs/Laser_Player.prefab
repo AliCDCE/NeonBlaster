@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4164111494097036638}
   m_Layer: 0
   m_Name: Laser_Player
-  m_TagString: Untagged
+  m_TagString: PlayerLaser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,4 +170,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   targetTag: Enemy
-  speed: 6
+  speed: 10
