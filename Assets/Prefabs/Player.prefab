@@ -156,7 +156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 327fd92babaeb4f49901816f65d36008, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -177,7 +177,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8345198002915451841}
+  - component: {fileID: 7790234690519007722}
   - component: {fileID: 923143009}
+  - component: {fileID: 7790234690519007725}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -193,7 +195,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7757144244454918810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -202,6 +204,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &7790234690519007722
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7757144244454918810}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.45506755, y: -0.269279}
+      - {x: 0.50480735, y: 0.048721075}
+      - {x: 0.42154995, y: 0.057346344}
+      - {x: 0.36118063, y: -0.015065908}
+      - {x: 0.12184104, y: 0.123576164}
+      - {x: 0.08303939, y: 0.37394238}
+      - {x: -0.08068231, y: 0.37558913}
+      - {x: -0.11862999, y: 0.1231668}
+      - {x: -0.36143014, y: -0.014027119}
+      - {x: -0.447407, y: 0.06424928}
+      - {x: -0.5025914, y: 0.046185493}
+      - {x: -0.4634548, y: -0.2627749}
+      - {x: -0.41173378, y: -0.21749449}
+      - {x: -0.14227852, y: -0.2828282}
+      - {x: -0.07967129, y: -0.37153244}
+      - {x: 0.07811502, y: -0.37057972}
+      - {x: 0.13877082, y: -0.2863357}
+      - {x: 0.40732783, y: -0.22067982}
 --- !u!114 &923143009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,4 +259,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93d1c8169d1aa834cadcbf0c403240cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
+  movementSpeed: 5
+--- !u!114 &7790234690519007725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7757144244454918810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0689e35522c92458c08df89942f2f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserPrefab: {fileID: 4164111494097036639, guid: fb74a208831756e4c951fe6d7d4f4fe1, type: 3}
+  laserLifeTime: 5
+  fireRate: 0.2

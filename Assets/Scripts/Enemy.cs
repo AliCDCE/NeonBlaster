@@ -7,38 +7,47 @@ public class Enemy : MonoBehaviour
 {
     public enum Type { small, medium, large} ;
     public Type type;
+    [SerializeField] private Sprite[] types_sprites;
     private float health;
-    [SerializeField] private TMP_Text  health_text;
+    [SerializeField] private TMP_Text health_text;
     [SerializeField] private GameObject enemyPrefab;
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
     void Start()
     {
-        float xrand = Random.Range(-60f,60f);
+        float xrand = Random.Range(-100f,100f);
         float yrand = Random.Range(-100f,0f);
         rb.AddForce( new Vector2( xrand, yrand));
 
-        switch (type)
-        {
-            case Type.small : health = 10;
-            break;
-            case Type.medium : health = 20;
-            break;
-            case Type.large : health = 40;
-            break;
-        }
-
-        health_text.text = health.ToString();
+        InitSetup();
     }
 
-    void Update()
+    private void InitSetup()
     {
-        
+        switch (type)
+        {
+            case Type.small :
+                health = 10;
+                sr.sprite = types_sprites[0];
+            break;
+            case Type.medium :
+                health = 20;
+                sr.sprite = types_sprites[1];
+            break;
+            case Type.large :
+                health = 40;
+                sr.sprite = types_sprites[2];
+            break;
+        }
+        health_text.text = health.ToString();
+
     }
 
     public void setType( Type type )
@@ -100,6 +109,8 @@ public class Enemy : MonoBehaviour
 
             GameObject instance2 = Instantiate( enemyPrefab, transform.position, Quaternion.identity);
             instance2.GetComponent<Enemy>().setType( newType );
+            
+            Destroy( gameObject );
 
         }
 

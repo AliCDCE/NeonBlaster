@@ -30,4 +30,23 @@ public class Player : MonoBehaviour
         newRot.y = Mathf.Lerp(newRot.y, rotation_factor, Time.deltaTime * movementSpeed );
         transform.localRotation = newRot;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("t : "+other.gameObject.tag);
+        if ( other.gameObject.CompareTag("Enemy") )
+        {
+            Die();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+        Debug.Log("c : "+other.gameObject.tag);
+    }
+
+    private void Die()
+    {
+        Debug.Log("you lose!");
+    }
 }
