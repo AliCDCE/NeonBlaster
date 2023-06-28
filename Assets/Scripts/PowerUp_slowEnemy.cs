@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
 
-public class PowerUp_fireRate : PowerUp
+public class PowerUp_slowEnemy : PowerUp
 {
-    [Header("value to add to fire rate")]
+    [Header("value to multiply the enemy's speed by")]
     [SerializeField] private float value;
+    [SerializeField] private Rigidbody2D enemy;
 
     public override async void ApplyPower()
     {
-        Shooter player = GameObject.FindObjectOfType<Shooter>();
-        player.ChangeFireRate( value );
+        enemy.gravityScale *= value;
         await Task.Delay( (int)(duration*1000) );
-        player.ChangeFireRate( -value );
+        enemy.gravityScale *= (1/value);
     }
 }

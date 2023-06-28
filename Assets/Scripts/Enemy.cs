@@ -11,10 +11,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private TextMeshProUGUI health_text;
     [SerializeField] private GameObject next_enemy_prefab;
     private Rigidbody2D rb;
+    private Shooter player;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindObjectOfType<Shooter>();
     }
 
     void Start()
@@ -56,7 +58,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerLaser"))
         {
-            TakeDamage( other.GetComponent<laser>().getDamage() );
+            TakeDamage( player.GetDamage() );
             Destroy(other);
         }
     }
@@ -98,5 +100,10 @@ public class Enemy : MonoBehaviour
             GameObject instance2 = Instantiate( next_enemy_prefab, transform.position, Quaternion.identity);
             Destroy( gameObject );
         }
+    }
+
+    public void ChangeSpeed( float value )
+    {
+        rb.gravityScale *= value;
     }
 }

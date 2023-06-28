@@ -11,10 +11,12 @@ public class PowerUp : MonoBehaviour
     public float duration;
     [SerializeField] private TextMeshProUGUI health_text;
     private Rigidbody2D rb;
+    private Shooter player;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindObjectOfType<Shooter>();
     }
 
     void Start()
@@ -56,7 +58,7 @@ public class PowerUp : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerLaser"))
         {
-            TakeDamage( other.GetComponent<laser>().getDamage() );
+            TakeDamage( player.GetDamage() );
             Destroy(other);
         }
     }

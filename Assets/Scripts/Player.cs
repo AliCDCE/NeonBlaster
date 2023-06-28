@@ -24,9 +24,13 @@ public class Player : MonoBehaviour
         Vector2 newPos = transform.position;
         newPos.x = Mathf.Lerp(newPos.x, mousePos.x, Time.deltaTime * movementSpeed);
         newPos.x = Mathf.Clamp( newPos.x, -2.15f, 2.15f);
-        var rotation_factor = (mousePos.x-newPos.x)/2f;
         transform.position = newPos;
 
+        float rotation_factor = (mousePos.x-newPos.x)/2f;
+        Rotate( rotation_factor );
+    }
+    private void Rotate( float rotation_factor )
+    {
         Quaternion newRot = transform.localRotation;
         newRot.y = Mathf.Lerp(newRot.y, rotation_factor, Time.deltaTime * movementSpeed );
         transform.localRotation = newRot;
@@ -34,7 +38,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("t : "+other.gameObject.tag);
+        // Debug.Log("t : "+other.gameObject.tag);
         if ( other.gameObject.CompareTag("Enemy") )
         {
             Die();
@@ -43,12 +47,21 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        Debug.Log("c : "+other.gameObject.tag);
+        // Debug.Log("c : "+other.gameObject.tag);
+        if ( other.gameObject.CompareTag("Enemy") )
+        {
+            Die();
+        }
     }
 
     private void Die()
     {
         Debug.Log("you lose!");
+    }
+
+    public void SetShield( bool value )
+    {
+        transform.GetChild(2).gameObject.SetActive( value );
     }
 
 }

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5919027837166355310}
   - component: {fileID: 6139871103820741086}
   - component: {fileID: 464430907594003578}
-  - component: {fileID: 2930469470693093567}
+  - component: {fileID: 5653445032618273574}
   m_Layer: 6
-  m_Name: PowerUp_fireRate
+  m_Name: PowerUp_fireRate 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8439989, y: 0.8315189}
   m_EdgeRadius: 0
---- !u!114 &2930469470693093567
+--- !u!114 &5653445032618273574
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,13 +91,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1060496675379749315}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7941f418c62eebc4d8217de56b4cd033, type: 3}
+  m_Script: {fileID: 11500000, guid: ca282e60af1f01a4aaa8d8dc13e7a844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health_type: 5
   duration: 10
   health_text: {fileID: 9197048760825407236}
-  value: -0.1
 --- !u!1 &1321784738340644743
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +171,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6b42a98516a5b8545a21aabb788ca126, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6d0ab5b020c9b264996a81c1d98c21d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
