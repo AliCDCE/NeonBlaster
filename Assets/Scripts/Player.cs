@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 newPos = transform.position;
         newPos.x = Mathf.Lerp(newPos.x, mousePos.x, Time.deltaTime * movementSpeed);
+        newPos.x = Mathf.Clamp( newPos.x, -2.15f, 2.15f);
         var rotation_factor = (mousePos.x-newPos.x)/2f;
         transform.position = newPos;
 

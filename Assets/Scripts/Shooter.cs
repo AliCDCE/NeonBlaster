@@ -50,4 +50,13 @@ public class Shooter : MonoBehaviour
             yield return new WaitForSeconds( fireRate );
         }
     }
+
+    public void ChangeFireRate( float value )
+    {
+        fireRate += value;
+    }
+    public float getFireRate()
+    {
+        return fireRate;
+    }
 }

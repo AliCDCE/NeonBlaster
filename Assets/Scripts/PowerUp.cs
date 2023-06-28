@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Threading.Tasks;
 
-public class Enemy : MonoBehaviour
+public class PowerUp : MonoBehaviour
 {
-    [SerializeField] private int type;
     [SerializeField] private float health_type;
     private float health;
+    public float duration;
     [SerializeField] private TextMeshProUGUI health_text;
-    [SerializeField] private GameObject next_enemy_prefab;
     private Rigidbody2D rb;
 
     private void Awake()
@@ -67,11 +67,8 @@ public class Enemy : MonoBehaviour
         ShowHealth();
         if (health<=0)
         {
-            die();
-        }
-        else
-        {
-            Resize();
+            ApplyPower();
+            Destroy( gameObject );
         }
     }
 
@@ -80,23 +77,5 @@ public class Enemy : MonoBehaviour
         health_text.text = health.ToString();
     }
 
-    private void Resize()
-    {
-        float factor = 2- health/health_type;
-        transform.localScale = Vector3.one *factor;
-    }
-
-    private void die()
-    {
-        if (type == 0)
-        {
-            Destroy( gameObject );
-        }
-        else
-        {
-            GameObject instance1 = Instantiate( next_enemy_prefab, transform.position, Quaternion.identity);
-            GameObject instance2 = Instantiate( next_enemy_prefab, transform.position, Quaternion.identity);
-            Destroy( gameObject );
-        }
-    }
+    public virtual async void ApplyPower() { await Task.Delay(0); }
 }

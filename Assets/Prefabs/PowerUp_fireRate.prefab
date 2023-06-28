@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5919027837166355310}
   - component: {fileID: 6139871103820741086}
-  - component: {fileID: 6042000689301175228}
-  - component: {fileID: 290785841408092807}
-  m_Layer: 0
-  m_Name: Enemy
+  - component: {fileID: 464430907594003578}
+  - component: {fileID: 2930469470693093567}
+  m_Layer: 6
+  m_Name: PowerUp_fireRate
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,8 +56,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &6042000689301175228
-PolygonCollider2D:
+--- !u!61 &464430907594003578
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -69,7 +69,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0062400103, y: 0.0031200647}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -79,17 +79,10 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.0031004548, y: 0.43444848}
-      - {x: -0.31197783, y: 0.31733158}
-      - {x: -0.43490115, y: -0.004688263}
-      - {x: -0.30810505, y: -0.31786466}
-      - {x: 0.004926622, y: -0.44451118}
-      - {x: 0.3131792, y: -0.31786478}
-      - {x: 0.4350465, y: -0.0048332214}
-      - {x: 0.31683785, y: 0.31587905}
---- !u!114 &290785841408092807
+  serializedVersion: 2
+  m_Size: {x: 0.8439989, y: 0.8315189}
+  m_EdgeRadius: 0
+--- !u!114 &2930469470693093567
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,16 +91,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1060496675379749315}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ccf0c63c2cf0f45858ac801f0a5506, type: 3}
+  m_Script: {fileID: 11500000, guid: 7941f418c62eebc4d8217de56b4cd033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
-  types_sprites:
-  - {fileID: 21300000, guid: 168928b59a897c0429690a9819222494, type: 3}
-  - {fileID: 21300000, guid: 791a4037dd2704f45bfb1861cfb6f0c5, type: 3}
-  - {fileID: 21300000, guid: c81943833bb407841928710de7c60853, type: 3}
+  health_type: 5
   health_text: {fileID: 9197048760825407236}
-  enemyPrefab: {fileID: 1060496675379749315}
 --- !u!1 &1321784738340644743
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,8 +106,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1180602861578604829}
   - component: {fileID: 335718663447140053}
-  m_Layer: 0
-  m_Name: enemy sprite
+  m_Layer: 6
+  m_Name: power up sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,7 +122,7 @@ Transform:
   m_GameObject: {fileID: 1321784738340644743}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 849838844166299327}
@@ -182,7 +170,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 168928b59a897c0429690a9819222494, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6b42a98516a5b8545a21aabb788ca126, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -204,7 +192,7 @@ GameObject:
   - component: {fileID: 9097629186728728035}
   - component: {fileID: 9119302857755659007}
   - component: {fileID: 9197048760825407236}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +274,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 46.4
+  m_fontSize: 23
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -322,7 +310,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 73.94135, y: -0.9213276, z: 72.48426, w: -0.9427471}
+  m_margin: {x: 86.7723, y: 13.001593, z: 87.49919, w: 11.069205}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -340,7 +328,7 @@ GameObject:
   - component: {fileID: 991824985531029758}
   - component: {fileID: 1668944292694247937}
   - component: {fileID: 8321362166522229940}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
