@@ -7,9 +7,26 @@ public class ScoreKeeper : MonoBehaviour
     private int score;
     private EnemySpawner enemySpawner;
 
+    static ScoreKeeper instance;
+
     private void Awake()
     {
         enemySpawner = FindObjectOfType<EnemySpawner>();
+        ManageSingleton();
+    }
+
+    private void ManageSingleton()
+    {
+        if ( instance != null )
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     public int GetScore()

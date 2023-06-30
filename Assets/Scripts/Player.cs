@@ -5,6 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 1f;
+    private LevelManager levelManager;
+
+    private void Awake()
+    {
+        levelManager = FindObjectOfType<LevelManager>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -38,25 +44,23 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Debug.Log("t : "+other.gameObject.tag);
         if ( other.gameObject.CompareTag("Enemy") )
         {
             Die();
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other) 
-    {
-        // Debug.Log("c : "+other.gameObject.tag);
-        if ( other.gameObject.CompareTag("Enemy") )
-        {
-            Die();
-        }
-    }
+    // private void OnCollisionEnter2D(Collision2D other) 
+    // {
+    //     if ( other.gameObject.CompareTag("Enemy") )
+    //     {
+    //         Die();
+    //     }
+    // }
 
     private void Die()
     {
-        Debug.Log("you lose!");
+        levelManager.OpenGameOver();
     }
 
     public void SetShield( bool value )
