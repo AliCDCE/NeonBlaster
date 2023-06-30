@@ -12,11 +12,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject next_enemy_prefab;
     private Rigidbody2D rb;
     private Shooter player;
+    private ScoreKeeper scoreKeeper;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        player = GameObject.FindObjectOfType<Shooter>();
+        player = FindObjectOfType<Shooter>();
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
     }
 
     void Start()
@@ -34,31 +36,12 @@ public class Enemy : MonoBehaviour
         health = health_type;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if ( other.gameObject.CompareTag("FrontWall") )
-        {
-            // Vector2 newV = rb.velocity;
-            // newV.x *= -10;
-            // // rb.velocity = newV;
-            // rb.AddForce(newV);
-        }
-        else if ( other.gameObject.CompareTag("BottomWall") )
-        {
-            // Vector2 newV = rb.velocity;
-            // Debug.Log(newV);
-            // newV.y *= -10;
-            // Debug.Log(newV);
-            // rb.velocity = newV;
-            // rb.velocity = new Vector2( rb.velocity.x, -1*rb.velocity.y);
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("PlayerLaser"))
         {
             TakeDamage( player.GetDamage() );
+            scoreKeeper.AddScore( (int)player.GetDamage() );
             Destroy(other);
         }
     }
