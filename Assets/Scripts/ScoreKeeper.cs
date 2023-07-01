@@ -5,14 +5,24 @@ using UnityEngine;
 public class ScoreKeeper : MonoBehaviour
 {
     private int score;
-    private EnemySpawner enemySpawner;
+    private int record;
+    public const string RECORD_PREF = "CONFIG_GLOBAL_RECORD";
+    [HideInInspector] public EnemySpawner enemySpawner;
 
     static ScoreKeeper instance;
 
     private void Awake()
     {
-        enemySpawner = FindObjectOfType<EnemySpawner>();
         ManageSingleton();
+
+        if (PlayerPrefs.HasKey(RECORD_PREF))
+        {
+            SetRecord( PlayerPrefs.GetInt(RECORD_PREF) );
+        }
+        else
+        {
+            SetRecord(0);
+        }
     }
 
     private void ManageSingleton()
@@ -55,5 +65,15 @@ public class ScoreKeeper : MonoBehaviour
         else if ( 60 <= score && score < 80 ) { tempChance = new float[] { 1f, 0.5f, 0.2f }; }
         else {                                  tempChance = new float[] { 1f, 0.7f, 0.3f }; }
         enemySpawner.ModifyChance( tempChance );
+    }
+
+    public int GetRecord()
+    {
+        return record;
+    }
+    public void SetRecord( int value )
+    {
+        record = value;
+        PlayerPrefs.SetInt( RECORD_PREF, record); 
     }
 }

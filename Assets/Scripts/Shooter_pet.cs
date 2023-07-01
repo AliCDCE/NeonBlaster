@@ -10,6 +10,13 @@ public class Shooter_pet : MonoBehaviour
     [SerializeField] private float fireRate = 0.2f;
     private Coroutine firingCoroutine;
 
+    private AudioPlayer audioPlayer;
+
+    private void Awake()
+    {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
+    }
+
     void Start()
     {
         firingCoroutine = StartCoroutine(FireCoroutine());
@@ -21,6 +28,7 @@ public class Shooter_pet : MonoBehaviour
         {
             GameObject instance = Instantiate( laserPrefab, transform.position, Quaternion.identity);
             Destroy( instance, laserLifeTime);
+            audioPlayer.PlayShootingClipPet();
             yield return new WaitForSeconds( fireRate );
         }
     }

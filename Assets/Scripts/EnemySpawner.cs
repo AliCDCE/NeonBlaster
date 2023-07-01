@@ -6,17 +6,21 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemies;
     [SerializeField] private float[] chance = { 1f , 0f , 0f };
+    private float min_spawnTime = 2;
+    private float max_spawnTime = 4;
 
     void Start()
     {
         StartCoroutine(SpawnEnemyCo());
+        min_spawnTime = DifficultyManager.min_spawnTime;
+        max_spawnTime = DifficultyManager.max_spawnTime;
     }
 
     private IEnumerator SpawnEnemyCo()
     {
         while ( true )
         {
-            yield return new WaitForSeconds( Random.Range(2,4) );
+            yield return new WaitForSeconds( Random.Range( min_spawnTime, max_spawnTime) );
             SpawnEnemy();
         }
     }

@@ -11,9 +11,11 @@ public class Shooter : MonoBehaviour
     private bool isFiring = true;
     Coroutine firingCoroutine;
 
-    void Start()
+    private AudioPlayer audioPlayer;
+
+    private void Awake()
     {
-        
+        audioPlayer = FindObjectOfType<AudioPlayer>();
     }
 
     void Update()
@@ -48,6 +50,7 @@ public class Shooter : MonoBehaviour
         {
             GameObject instance = Instantiate( laserPrefab, transform.position, Quaternion.identity);
             Destroy( instance, laserLifeTime);
+            audioPlayer.PlayShootingClipPlayer();
             yield return new WaitForSeconds( fireRate );
         }
     }

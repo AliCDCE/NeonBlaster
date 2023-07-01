@@ -13,12 +13,14 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     private Shooter player;
     private ScoreKeeper scoreKeeper;
+    private AudioPlayer audioPlayer;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         player = FindObjectOfType<Shooter>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
     }
 
     void Start()
@@ -73,6 +75,7 @@ public class Enemy : MonoBehaviour
 
     private void die()
     {
+        audioPlayer.PlayDamageClipEnemy();
         if (type == 0)
         {
             Destroy( gameObject );

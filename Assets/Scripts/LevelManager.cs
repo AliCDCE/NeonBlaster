@@ -9,16 +9,24 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        scoreKeeper.enemySpawner = FindObjectOfType<EnemySpawner>();
     }
 
     public void StartGame()
     {
         scoreKeeper.ResetScore();
+        var tempMusic = FindObjectOfType<MenuMusicPlayer>();
+        if ( tempMusic != null )
+        {
+            Destroy(tempMusic.gameObject);
+        }
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Game");
     }
 
     public void OpenMainMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -39,9 +47,9 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator WaitAndOpen( string sceneName, float delay)
     {
-        // Time.timeScale = 0.5f;
+        Time.timeScale = 0.5f;
         yield return new WaitForSeconds( delay );
-        // Time.timeScale = 1;
+        Time.timeScale = 1;
         SceneManager.LoadScene(sceneName);
     }
 

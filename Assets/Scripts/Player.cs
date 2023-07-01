@@ -6,19 +6,14 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 1f;
     private LevelManager levelManager;
+    private AudioPlayer audioPlayer;
 
     private void Awake()
     {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
         levelManager = FindObjectOfType<LevelManager>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         Movement();
@@ -50,16 +45,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    // private void OnCollisionEnter2D(Collision2D other) 
-    // {
-    //     if ( other.gameObject.CompareTag("Enemy") )
-    //     {
-    //         Die();
-    //     }
-    // }
-
     private void Die()
     {
+        audioPlayer.PlayDamageClipPlayer();
         levelManager.OpenGameOver();
     }
 
@@ -67,5 +55,4 @@ public class Player : MonoBehaviour
     {
         transform.GetChild(2).gameObject.SetActive( value );
     }
-
 }

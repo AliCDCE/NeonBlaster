@@ -9,26 +9,42 @@ public class Settings : MonoBehaviour
     public Slider volumeSlider;
     public TMP_Dropdown difficultyDropdown;
 
-    public static string playerName = "";
-    public static float volume = 1;
-    public static Difficulty difficulty = Difficulty.ROOKIE;
     public enum Difficulty
     {
         ROOKIE,PROFESSIONAL,EXPERT
     };
 
+    public const string NAME_PREF = "CONFIG_GLOBAL_NAME";
+    public const string VOLUME_PREF = "CONFIG_GLOBAL_VOLUME";
+    public const string DIFF_PREF = "CONFIG_GLOBAL_DIFF";
+
     void Start()
     {
-        nameInput.text = playerName;
-        volumeSlider.value = volume;
-        difficultyDropdown.value = (int)difficulty;
+        if (PlayerPrefs.HasKey(NAME_PREF))
+        {
+            nameInput.text = PlayerPrefs.GetString(NAME_PREF);
+        }
+        if (PlayerPrefs.HasKey(VOLUME_PREF))
+        {
+            volumeSlider.value = PlayerPrefs.GetFloat(VOLUME_PREF);
+        }
+        if (PlayerPrefs.HasKey(DIFF_PREF))
+        {
+            difficultyDropdown.value = PlayerPrefs.GetInt(DIFF_PREF);
+        }
+    }
+
+    private void Update()
+    {
+        AudioListener.volume = volumeSlider.value;
     }
     
     public void Exit()
     {
-        playerName = nameInput.text;
-        volume = volumeSlider.value;
-        difficulty = (Difficulty)difficultyDropdown.value;
+        PlayerPrefs.SetString(NAME_PREF, nameInput.text);
+        PlayerPrefs.SetFloat(VOLUME_PREF, volumeSlider.value);
+        PlayerPrefs.SetInt(DIFF_PREF, difficultyDropdown.value);
+
         SceneManager.LoadScene("MainMenu");
     }
 }
